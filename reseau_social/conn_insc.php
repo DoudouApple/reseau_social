@@ -23,6 +23,10 @@ if (isset($_POST['login'])) {
       $_SESSION['idu'] = $row['idu'];
       $_SESSION['profil'] = $row['profil'];
 
+      $filename = 'includes/files/' . $row['idu'] . '.txt';
+      $content = 'Date et heure de connexion : ' . date('Y-m-d H:i:s') . PHP_EOL;
+      file_put_contents($filename, $content, FILE_APPEND);
+
 
       header("Location: index.php");
       exit();
@@ -53,6 +57,11 @@ if (isset($_POST['register'])) {
   $result = mysqli_query($conn, $sql);
 
   if ($result && mysqli_num_rows($result) > 0) {
+
+    $filename = 'includes/files/' . mysqli_insert_id($conn) . '.txt';
+      $content = 'Date et heure d\'inscription : ' . date('Y-m-d H:i:s') . PHP_EOL;
+      file_put_contents($filename, $content, FILE_APPEND);
+
     
     echo "Cet email est déjà utilisé. Veuillez en choisir un autre.";
   } else {
