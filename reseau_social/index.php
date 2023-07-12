@@ -224,7 +224,7 @@ if (isset($_GET['logout'])) {
         $sql = "SELECT p.*,u.*
         FROM utilisateurs u
         INNER JOIN posts p ON u.idu = p.idu
-        WHERE u.idu = p.idu ORDER BY p.idu DESC";
+        WHERE u.idu = p.idu ORDER BY p.idp DESC";
 
 
         $result = mysqli_query($conn, $sql);
